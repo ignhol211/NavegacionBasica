@@ -10,11 +10,23 @@ class SecondActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivitySecondBinding
 
+    companion object{
+
+        const val TAG_TEXT = "TAG_TEXT"
+
+        fun launch(context: Context, image:Int){
+            val intent = Intent(context,SecondActivity::class.java)
+            intent.putExtra(TAG_TEXT,image)
+            context.startActivity(intent)
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.foto.setImageResource(intent.getIntExtra("minion",0))
+        binding.foto.setImageResource(intent.getIntExtra(TAG_TEXT,0))
     }
 }

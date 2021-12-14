@@ -17,22 +17,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.b1.setOnClickListener(){
-            val intent = Intent(this, SecondActivity::class.java)
-            intent.putExtra("minion",R.mipmap.minion)
-            startActivity(intent)
+            SecondActivity.launch(this,R.mipmap.minion)
         }
 
         binding.b2.setOnClickListener(){
-            ThirdActivity.launch(this,binding.et1.text.toString())
+            ThirdActivity.launch(this,"El edit text de la activity anterior tenía una longitud de "+binding.et1.text.length+" caracteres")
         }
 
         binding.b3.setOnClickListener(){
             if ((Random.nextBoolean())){
-                val intent = Intent(this, SecondActivity::class.java)
-                intent.putExtra("minion",R.mipmap.minion2)
-                startActivity(intent)
+                SecondActivity.launch(this,R.mipmap.minion2)
             }else{
-                ThirdActivity.launch(this,binding.et1.text.toString().uppercase())
+                ThirdActivity.launch(this,"El edit text de la activity anterior contenía: "+binding.et1.text.toString().uppercase())
             }
         }
 

@@ -13,11 +13,11 @@ class ThirdActivity : AppCompatActivity() {
 
     companion object{
 
-        const val textoVisible = "El edit text de la activity anterior tenía una longitud de caracteres:"
+        const val TAG_TEXT = "TAG_TEXT"
 
         fun launch(context: Context, text:String){
             val intent = Intent(context,ThirdActivity::class.java)
-            intent.putExtra("datoUsuario",text)
+            intent.putExtra(TAG_TEXT,text)
             context.startActivity(intent)
         }
 
@@ -28,14 +28,6 @@ class ThirdActivity : AppCompatActivity() {
         binding = ActivityThirdBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val initialData = intent.getStringExtra ("datoUsuario")
-
-        if (initialData != null) {
-            binding.tv1.visibility = View.VISIBLE
-            binding.tv1.text = textoVisible + initialData.length
-        }else{
-            binding.tv1.visibility = View.VISIBLE
-            binding.tv1.text = "No introdujiste texto"
-        }
+        binding.tv1.text = intent.getStringExtra (TAG_TEXT)
     }
 }
